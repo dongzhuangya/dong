@@ -1,10 +1,5 @@
 @extends('layut.comm')
-@section('index')
-
-	<!-- cart menu -->
-	
-	<!-- end cart menu -->
-	
+@section('index')	
 	<!-- shop single -->
 	<div class="pages section">
 		<div class="container">
@@ -13,7 +8,7 @@
 				<h5>{{$data->goods_name}}</h5>
 				<div class="price">${{$data->goods_price}}<span>$28</span></div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam eaque in non delectus, error iste veniam commodi mollitia, officia possimus, repellendus maiores doloribus provident. Itaque, ab perferendis nemo tempore! Accusamus</p>
-				<a href="" type="button" class="btn button-default">添加购物车</a>
+				<a href="{{url('index/dan')}}?id={{$data->id}}" type="button" class="btn button-default">添加购物车</a>
 			</div>
 			<div class="review">
 					<h5>1 {{$data->goods_name}}</h5>

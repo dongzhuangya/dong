@@ -11,8 +11,8 @@ class GoodsController extends Controller
     {
     	$redis = new \Redis();
         $redis->connect('127.0.0.1','6379');
-        $redis->incr('num');
-        $num = $redis->get('num');
+        $redis->incr('adc');
+        $num = $redis->get('adc');
         echo '你的访问次数：'.$num;
 
         $dd=$request->all();
@@ -21,6 +21,7 @@ class GoodsController extends Controller
         if(!empty($dd['ss'])){
         	$ss=$dd['ss'];
         	$data=DB::table('goodss')->where('goods_name','like','%'.$dd['ss'].'%')->paginate(6);
+
         }else{
         	$data=DB::table('goodss')->paginate(6);
         }

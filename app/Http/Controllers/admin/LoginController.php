@@ -16,11 +16,10 @@ class LoginController extends Controller
     	$name=$request->all()['name'];
     	$pwd=$request->all()['pwd'];
     	$date=DB::table('admin')->where(['name'=>$name])->first();
-    	// dd($date);
     	if($pwd!=$date->pwd){
     		echo '密码有误';
     	}else{
-    		session('data','info');
+    		$request->session()->put('name',$date);
     		return redirect('index/index');
     	}
 

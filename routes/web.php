@@ -18,10 +18,11 @@ Route::group(['middleware' => ['login']], function () {
 
 Route::get('login/index','admin\LoginController@index');
 Route::post('login/dong','admin\LoginController@dong');
+Route::get('order/index','index\OrderController@index');
 Route::get('login/zuce','admin\LoginController@zuce');
 Route::post('login/zuceTo','admin\LoginController@zuceTo');
 Route::get('index/ding','index\IndexController@ding');
-
+Route::get('index/dan','index\IndexController@dan');
 Route::get('goods/add','admin\GoodsController@add');
 Route::post('goods/addTo','admin\GoodsController@addTo');
 Route::get('goods/index','admin\GoodsController@index');
@@ -30,6 +31,9 @@ Route::get('goods/delete','admin\GoodsController@delete');
 Route::post('goods/updateTo','admin\GoodsController@updateTo');
 Route::get('index/index','index\IndexController@index');
 Route::get('index/goods','index\IndexController@liebiao');
+Route::get('horse/add','admin\HorseController@add');
+Route::post('horse/addTo','admin\HorseController@addTo');
+Route::get('horse/index','admin\HorseController@index');
 
 
 });
