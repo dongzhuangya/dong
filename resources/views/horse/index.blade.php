@@ -19,7 +19,7 @@
 				<td>张数</td>
 				<td>备注</td>
 			</tr>
-		@foreach($data as $v)
+		@foreach($data as $v
 			<tr>
 				<td>{{$v->train}}</td>
 				<td>{{$v->place}}->{{$v->arrival}}</td>

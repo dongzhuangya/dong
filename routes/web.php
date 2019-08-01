@@ -34,6 +34,30 @@ Route::get('index/goods','index\IndexController@liebiao');
 Route::get('horse/add','admin\HorseController@add');
 Route::post('horse/addTo','admin\HorseController@addTo');
 Route::get('horse/index','admin\HorseController@index');
-
+Route::get('horse/aa','admin\HorseController@aa');
+Route::post('horse/aaTo','admin\HorseController@aaTo');
+Route::get('horse/list','admin\HorseController@list');
+Route::get('horse/aT','admin\HorseController@aT');
+Route::post('horse/qq','admin\HorseController@qq');
+Route::get('hhoo/add','admin\HhooController@add');
+Route::post('hhoo/addTo','admin\HhooController@addTo');
+Route::get('hhoo/list','admin\HhooController@list');
+Route::get('hhoo/app','admin\HhooController@app');
+Route::get('hhoo/apps','admin\HhooController@apps');
+Route::get('hhoo/appTo','admin\HhooController@appTo');
+Route::get('hhoo/ass','admin\HhooController@ass');
+Route::get('hhoo/assTo','admin\HhooController@assTo');
+Route::get('hhoo/ccc','admin\HhooController@ccc');
 
 });
+Route::group(['middleware' => ['apps']], function () {
+
+});
+Route::get('aaa/index','admin\AaaController@index');
+Route::post('aaa/list','admin\AaaController@list');
+Route::get('aaa/listaaa','admin\AaaController@listaaa');
+Route::get('aaa/add','admin\AaaController@add');
+Route::post('aaa/addo','admin\AaaController@addo');
+Route::get('aaa/delect','admin\AaaController@delect');
+Route::get('aaa/adc','admin\AaaController@adc');
+

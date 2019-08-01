@@ -50,4 +50,38 @@ class HorseController extends Controller
 
     	return view('horse.index',['data'=>$data,'sss'=>$sss]);
     }
+    public function aa()
+    {
+    	return view('horse.aa');
+    }
+    public function aaTo(Request $request)
+    {
+    	$name=$request->all()['name'];
+    	$pwd=$request->all()['pwd'];
+    	$data=DB::table('admin')->where('name',$name)->first();
+    	// dd($data);
+    	if($pwd=$data->pwd){
+    		return redirect('horse/list');
+    	}else{
+    		return '密码错误';
+    	}
+
+    }
+    public function list()
+    {
+    	return view('horse.list');
+    }
+    public function aT(Request $request)
+    {
+    	$xxx=$request->all();
+    	$cc=$xxx['xxx'];
+    	return view('horse.aT',['xxx'=>$cc]);
+    }
+    public function qq(Request $request)
+    {
+    	$data=$request->all();
+
+    	dd($data);
+    }
+
 }
