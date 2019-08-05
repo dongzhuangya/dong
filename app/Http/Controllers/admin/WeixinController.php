@@ -63,15 +63,13 @@ class WeixinController extends Controller
     }
     public function list_index()
     {
-//        echo  111;exit;
         $redirect_uri='http://www.dong.com/weixin/code';
         $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".env('APPID')."&redirect_uri=".urlencode($redirect_uri)."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
         header('Location'.$url);
     }
     public function code(Request $request){
-        echo 111;exit;
         $req = $request->all();
-//        dd($req);
+        dd($req);
         $code = $req['code'];
         //获取access_token
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".env("APPID")."&secret=".env("APPSECRET")."&code=".$code."&grant_type=authorization_code";
