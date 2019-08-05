@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['middleware' => ['login']], function () {
-
 Route::get('login/index','admin\LoginController@index');
 Route::post('login/dong','admin\LoginController@dong');
 Route::get('order/index','index\OrderController@index');
@@ -48,7 +47,6 @@ Route::get('hhoo/appTo','admin\HhooController@appTo');
 Route::get('hhoo/ass','admin\HhooController@ass');
 Route::get('hhoo/assTo','admin\HhooController@assTo');
 Route::get('hhoo/ccc','admin\HhooController@ccc');
-
 });
 Route::group(['middleware' => ['apps']], function () {
 
@@ -60,4 +58,10 @@ Route::get('aaa/add','admin\AaaController@add');
 Route::post('aaa/addo','admin\AaaController@addo');
 Route::get('aaa/delect','admin\AaaController@delect');
 Route::get('aaa/adc','admin\AaaController@adc');
+
+Route::get('weixin/index','admin\WeixinController@index');
+Route::get('weixin/list','admin\WeixinController@list');
+Route::get('weixin/code','admin\WeixinController@code');
+Route::get('weixin/list_index','admin\WeixinController@list_index');
+
 
