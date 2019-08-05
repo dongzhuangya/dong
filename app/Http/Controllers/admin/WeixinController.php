@@ -63,12 +63,15 @@ class WeixinController extends Controller
     }
     public function list_index()
     {
+//        echo  111;exit;
         $redirect_uri='http://www.dong.com/weixin/code';
-        $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
-        header('location'.$url);
+        $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".env('APPID')."&redirect_uri=".urlencode($redirect_uri)."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+        header('Location'.$url);
     }
     public function code(Request $request){
+        echo 111;exit;
         $req = $request->all();
+//        dd($req);
         $code = $req['code'];
         //获取access_token
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".env("APPID")."&secret=".env("APPSECRET")."&code=".$code."&grant_type=authorization_code";
@@ -76,6 +79,7 @@ class WeixinController extends Controller
         $result = json_decode($re,1);
         $access_token = $result['access_token'];
         $openid = $result['openid'];
+        dd($openid);
         //去user_openid 表查 是否有数据 openid = $openid
         //有数据 在网站有用户 user表有数据[ 登陆 ]
         //没有数据 注册信息  insert user  user_openid   生成新用户
