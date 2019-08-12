@@ -62,6 +62,12 @@ Route::get('aaa/adc','admin\AaaController@adc');
 Route::get('weixin/index','admin\WeixinController@index');
 Route::get('weixin/list','admin\WeixinController@list');
 Route::get('weixin/code','admin\WeixinController@code');
-Route::get('weixin/list_index','admin\WeixinController@list_index');
+Route::get('weixin/login','admin\WeixinController@login');
+Route::get('weixin/adc','admin\WeixinController@adc');
+Route::get('weixin/del_dd','admin\WeixinController@del_dd');
+Route::get('weixin/add','admin\WeixinController@add');
+Route::post('weixin/en_do','admin\WeixinController@en_do');
+Route::get('weixin/en','admin\WeixinController@en');
+Route::get('weixin/fen','admin\WeixinController@fen');
 
 
