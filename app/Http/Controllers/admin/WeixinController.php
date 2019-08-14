@@ -113,8 +113,7 @@ class WeixinController extends Controller
     //不知道
     public function event()
     {
-        echo $_GET['echostr'];
-        die();
+
     }
     //上传
     public function en()

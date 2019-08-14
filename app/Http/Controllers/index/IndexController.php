@@ -28,7 +28,7 @@ class IndexController extends Controller
     {
 
         if(!session('name')){
-            return redirect('login/index',);
+            return redirect('login/index');
         }
         $id=$request->all();
         // dd($id);
