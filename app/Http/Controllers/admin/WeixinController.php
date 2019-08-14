@@ -26,7 +26,7 @@ class WeixinController extends Controller
 
         return $access_token;
     }
-    //获取权限
+    //添加粉丝
     public function list()
     {
         $access_token=$this->index();
@@ -81,7 +81,7 @@ class WeixinController extends Controller
         $result = json_decode($re,1);
         $access_token = $result['access_token'];
         $openid = $result['openid'];
-
+        dd($openid);
     }
     //模板列表
     public function adc(){
@@ -110,6 +110,7 @@ class WeixinController extends Controller
         }
         dd($re);
     }
+    //不知道
     public function event()
     {
         echo $_GET['echostr'];
@@ -120,7 +121,7 @@ class WeixinController extends Controller
     {
         return view('weixin.en');
     }
-    //上传素材
+    //上传素材图片音频
     public function en_do(Request $request)
     {
         $client=new Client();
@@ -299,4 +300,6 @@ class WeixinController extends Controller
         //返回数据
         return $output;
     }
+    //
+   
 }
