@@ -115,6 +115,43 @@ class WeixinController extends Controller
     {
 
     }
+    public function establish()
+    {
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$this->index();
+        $data = [
+            'button'=>[
+                [
+                    'name'=>'菜单一',
+                    'type'=>'click',
+                    'key'=>'item1'
+                ],//第一个一级菜单
+                [
+                    'name'=>'菜单二',
+                    'sub_button'=>[
+                        [
+                            'name'=>'音乐',
+                            'type'=>'click',
+                            'key'=>'music'
+                        ], // 第二个二级菜单
+                        [
+                            'name'=>'电影',
+                            'type'=>'view',
+                            'url'=>'http://www.iqiyi.com/',
+                        ], // 第二个二级菜单
+
+                    ],
+                ],//第二个一级菜单
+                [
+                    'name'=>'菜单三',
+                    'type'=>'view',
+                    'url'=>'http://www.qq.com',
+                ],//第三个一级菜单
+            ]
+        ];
+        $res=json_encode($data,JSON_UNESCAPED_UNICODE);
+        $aa=$this->post($url,$res);
+        dd($aa);
+    }
     //上传
     public function en()
     {

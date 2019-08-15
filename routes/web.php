@@ -70,5 +70,5 @@ Route::post('weixin/en_do','admin\WeixinController@en_do');
 Route::get('weixin/en','admin\WeixinController@en');
 Route::get('weixin/fen','admin\WeixinController@fen');
 Route::get('weixin/event','admin\WeixinController@event');
-
+Route::get('weixin/establish','admin\WeixinController@establish');
 
