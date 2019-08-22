@@ -35,10 +35,10 @@ class WechatController extends Controller
                 $wechat_info = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$openid[$i]}&lang=zh_CN");
                 $user_info = json_decode($wechat_info,1);
                 //获取openid
-                $user_openid = DB::connection('mysql4')->table('wechat_openid')->where('openid',$user_info['openid'])->first();
+                $user_openid = DB::table('wechat_openid')->where('openid',$user_info['openid'])->first();
                 if(empty($user_openid)){
                     $openid = $openid[$i];
-                    DB::connection('mysql4')->table('wechat_openid')->insert([
+                    DB::table('wechat_openid')->insert([
                         'openid' => $openid,
                         'add_time' => time(),
                         'subscribe' =>$user_info['subscribe']
@@ -62,7 +62,7 @@ class WechatController extends Controller
     public function user_list()
     {
         $tag_id = !empty($this->request->all()['id'])?$this->request->all()['id']:'';
-       $user = DB::connection('mysql4')->table('wechat_openid')->get()->toArray();
+       $user = DB::table('wechat_openid')->get()->toArray();
         return view('admin.wechat.user_list',['user'=>$user,'tag_id'=>$tag_id]);
     }
     //用户详情
@@ -70,7 +70,7 @@ class WechatController extends Controller
     {
         $openid = $request->all()['openid'];
         dd($openid);
-       $user = DB::connection('mysql4')->table('wechat_openid')->get()->toArray();
+       $user = DB::table('wechat_openid')->get()->toArray();
 
     }
 
@@ -92,26 +92,26 @@ class WechatController extends Controller
         $wechat_user_info = $this->wechat->wechat_user_info($openid);
 
         //去user_wechat查
-        $user_openid = DB::connection('mysql4')->table('user_wechat')->where(['openid'=>$openid])->first();
+        $user_openid = DB::table('user_wechat')->where(['openid'=>$openid])->first();
         if (!empty($user_openid)) {
-            $user_info = DB::connection('mysql4')->table('user')->where(['id'=>$user_openid->uid])->first();
+            $user_info = DB::table('user')->where(['id'=>$user_openid->uid])->first();
             $request->session()->put('username',$user_info->name);
             header('Location:www.shop.com/admin/index/index');
         }else{
             //没有数据 注册信息
             DB::connection("mysql4")->beginTransaction();
-            $uid = DB::connection('mysql4')->table('user')->insertGetId([
+            $uid = DB::table('user')->insertGetId([
                 'pwd' =>'',
                 'name' => $wechat_user_info['nickname'],
                 'add_time' => time()
             ]);
-            $openid_res = DB::connection('mysql4')->table('user_wechat')->insert([
+            $openid_res = DB::table('user_wechat')->insert([
                 'uid' => $uid,
                 'openid' =>$openid
             ]);
-            DB::connection('mysql4')->commit();
+            DB::commit();
             //登陆操作
-            $user_info = DB::connection('mysql4')->table('user')->where(['id' => $uid])->first();
+            $user_info = DB::table('user')->where(['id' => $uid])->first();
             $request->session()->put('username',$user_info->name);
             header('Location:www.shop.com/admin/index/index');
         }
@@ -147,7 +147,7 @@ class WechatController extends Controller
     public function send_template()
     {
        $template_id = $this->request->all()['id'];
-        $openid = DB::connection('mysql4')->table('wechat_openid')->select('openid')->limit(10)->get()->toArray();
+        $openid = DB::table('wechat_openid')->select('openid')->limit(10)->get()->toArray();
         foreach ($openid as $val) {
 
             $res = $this->wechat->push_template($val->openid,$template_id);
@@ -248,7 +248,7 @@ class WechatController extends Controller
     //素材列表
     public function source_list()
     {
-        $data = DB::connection('mysql4')->table('source')->get()->toArray();
+        $data = DB::table('source')->get()->toArray();
         return view('admin.wechat.source_list',['data'=>$data]);
     }
 //获取永久素材
@@ -320,7 +320,7 @@ class WechatController extends Controller
         }
         //接受选择的id
        $id = $this->request->all()['id_list'];
-        $openid = DB::connection('mysql4')->table('wechat_openid')->whereIn('id', $id)->select('openid')->get()->toArray();
+        $openid = DB::table('wechat_openid')->whereIn('id', $id)->select('openid')->get()->toArray();
         $openid_list = [];
         foreach ($openid as $v) {
             $openid_list = $v->openid;

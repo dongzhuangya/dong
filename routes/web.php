@@ -71,4 +71,8 @@ Route::get('weixin/en','admin\WeixinController@en');
 Route::get('weixin/fen','admin\WeixinController@fen');
 Route::get('weixin/event','admin\WeixinController@event');
 Route::get('weixin/establish','admin\WeixinController@establish');
+Route::get('weixin/asd','admin\WeixinController@asd');
+Route::get('assc/index','admin\AsscController@index');
+Route::get('assc/code','admin\AsscController@code');
+
 

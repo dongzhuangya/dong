@@ -337,5 +337,50 @@ class WeixinController extends Controller
         return $output;
     }
     //
-   
+    public function asd()
+    {
+
+//        $url="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=".$this->index();
+        @header('Content-type: text/plain;charset=UTF-8');
+        $data = array(                //需要POST传输的数据
+            'action_name'        => 'QR_LIMIT_SCENE',
+            'action_info'        => array(
+                'scene'    => array(
+                    'scene_id'    => 1,
+                ),
+            ),
+        );
+
+        $url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?"
+            ."access_token=".$this->index();
+        $ticket  = $this->httpdata($url, $data);
+        $ticket=json_decode($ticket,1);
+        var_dump($ticket);die;
+        $url1="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=".$ticket['ticket'];
+
+        $add=file_get_contents($url1);
+        echo $add;
+//        $dir = '/storage/1_wx.jpg';
+//        if(!empty($img)){
+//            @file_put_contents($dir,$img);
+//        }
+    }
+    private function httpdata($url,$data)
+    {
+        $data = json_encode($data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $status = curl_exec($ch);
+        curl_close($ch);
+        $res = json_decode($status, true);
+        return $status;
+    }
 }
