@@ -355,7 +355,7 @@ class WeixinController extends Controller
             ."access_token=".$this->index();
         $ticket  = $this->httpdata($url, $data);
         $ticket=json_decode($ticket,1);
-        var_dump($ticket);die;
+
         $url1="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=".$ticket['ticket'];
 
         $add=file_get_contents($url1);
