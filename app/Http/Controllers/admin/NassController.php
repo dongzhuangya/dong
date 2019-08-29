@@ -32,7 +32,7 @@ class NassController extends Controller
                 [
                     'name'=>'查看课程',
                     'type'=>'click',
-                    'key'=>'item1'
+                    'url'=>'item1'
                 ],//第一个一级菜单
 
                 [
@@ -49,6 +49,35 @@ class NassController extends Controller
     public function add()
     {
         return view('nass.add');
+    }
+    public function add_to(Request $request)
+    {
+         $data=$request->all();
+        $res=\DB::table('asdd')->insert([
+           'name'=>$data['name'],
+           'namea'=>$data['namea'],
+           'nameb'=>$data['nameb'],
+           'namec'=>$data['namec']
+        ]);
+    }
+    public function index()
+    {
+        $data=\DB::table('openid')->select('openid')->get()->toArray();
+        foreach($data as $v){
+            $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->access_token();
+            $data=[
+                'touser'=>$v->openid,
+                'template_id'=>'UuNurQYPUj8r0Wo1sPO4ZeeqLE6xEFL_BUCjAYWWOhA',
+                'url'=>'http://www.baidu.com',
+                'data'=>[
+                    'keyword'=>[
+                        'value'=>'商品名称'
+                    ]
+                ]
+            ];
+            $re=$this->post($url,json_encode($data));
+        }
+        dd($re);
     }
     public function post($url, $data = []){
         //初使化init方法
