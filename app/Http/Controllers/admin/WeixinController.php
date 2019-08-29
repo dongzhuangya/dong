@@ -121,12 +121,12 @@ class WeixinController extends Controller
         $data = [
             'button'=>[
                 [
-                    'name'=>'菜单一',
+                    'name'=>'菜单',
                     'type'=>'click',
                     'key'=>'item1'
                 ],//第一个一级菜单
                 [
-                    'name'=>'菜单二',
+                    'name'=>'菜单',
                     'sub_button'=>[
                         [
                             'name'=>'音乐',
@@ -142,7 +142,7 @@ class WeixinController extends Controller
                     ],
                 ],//第二个一级菜单
                 [
-                    'name'=>'菜单三',
+                    'name'=>'菜单',
                     'type'=>'view',
                     'url'=>'http://www.qq.com',
                 ],//第三个一级菜单
@@ -307,6 +307,7 @@ class WeixinController extends Controller
         $data=[
             'template_id'=>'XiTRxVkoZtCr8ByLS81V7sGi0OgjOsCrzZX4KbRqVrM'
         ];
+
         $qq=$this->post($url,json_encode($data));
         dd($qq);
     }
@@ -363,7 +364,7 @@ class WeixinController extends Controller
 //        $dir = '/storage/1_wx.jpg';
 //        if(!empty($img)){
 //            @file_put_contents($dir,$img);
-//        }
+//        } 
     }
     private function httpdata($url,$data)
     {
