@@ -75,5 +75,6 @@ Route::get('weixin/asd','admin\WeixinController@asd');
 Route::get('assc/index','admin\AsscController@index');
 Route::get('assc/code','admin\AsscController@code');
 Route::get('nass/biaodan','admin\NassController@biaodan');
+Route::get('nass/add','admin\NassController@add');
 
 

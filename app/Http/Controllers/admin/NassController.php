@@ -46,6 +46,10 @@ class NassController extends Controller
         $aa=$this->post($url,$res);
         dd($aa);
     }
+    public function add()
+    {
+        return view('nass.add');
+    }
     public function post($url, $data = []){
         //初使化init方法
         $ch = curl_init();
