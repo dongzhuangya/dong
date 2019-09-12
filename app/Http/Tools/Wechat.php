@@ -224,4 +224,5 @@ class Wechat
         $res = $this->post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
         return json_decode($res, true);
     }
+
 }

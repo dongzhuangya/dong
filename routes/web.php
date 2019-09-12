@@ -72,10 +72,23 @@ Route::get('weixin/fen','admin\WeixinController@fen');
 Route::get('weixin/event','admin\WeixinController@event');
 Route::get('weixin/establish','admin\WeixinController@establish');
 Route::get('weixin/asd','admin\WeixinController@asd');
-Route::get('assc/index','admin\AsscController@index');
-Route::get('assc/code','admin\AsscController@code');
-Route::get('nass/biaodan','admin\NassController@biaodan');
-Route::get('nass/add','admin\NassController@add');
-Route::post('nass/add_to','admin\NassController@add_to');
+////////////////////////////////////////
+Route::get('wecha/access_token','admin\WechaController@access_token');
+Route::get('wecha/user_list','admin\WechaController@user_list');
+Route::get('wecha/ddd','admin\WechaController@ddd');
+Route::get('wecha/code','admin\WechaController@code');
+Route::get('wecha/noss','admin\WechaController@noss');
+Route::post('wecha/do_noss','admin\WechaController@do_noss');
+Route::get('wecha/wechat_source','admin\WechaController@wechat_source');
+Route::get('wecha/upload','admin\WechaController@upload');
+Route::get('wecha/guzzle_upload','admin\WechaController@guzzle_upload');
+Route::get('wecha/curl_post','admin\WechaController@curl_post');
+Route::get('song/index','admin\SongController@index');
+Route::get('song/add','admin\SongController@add');
+Route::post('song/do_add','admin\SongController@do_add');
+Route::get('song/event','admin\SongController@event');
+
+
+
 
 
