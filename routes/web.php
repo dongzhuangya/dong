@@ -86,7 +86,7 @@ Route::get('wecha/curl_post','admin\WechaController@curl_post');
 Route::get('song/index','admin\SongController@index');
 Route::get('song/add','admin\SongController@add');
 Route::post('song/do_add','admin\SongController@do_add');
-Route::get('song/event','admin\SongController@event');
+Route::get('wecha/event','admin\WechaController@event');
 
 
 
