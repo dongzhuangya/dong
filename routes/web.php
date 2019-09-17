@@ -69,7 +69,7 @@ Route::get('weixin/add','admin\WeixinController@add');
 Route::post('weixin/en_do','admin\WeixinController@en_do');
 Route::get('weixin/en','admin\WeixinController@en');
 Route::get('weixin/fen','admin\WeixinController@fen');
-Route::get('weixin/event','admin\WeixinController@event');
+Route::post('weixin/event','admin\WeixinController@event');
 Route::get('weixin/establish','admin\WeixinController@establish');
 Route::get('weixin/asd','admin\WeixinController@asd');
 ////////////////////////////////////////
@@ -86,7 +86,14 @@ Route::get('wecha/curl_post','admin\WechaController@curl_post');
 Route::get('song/index','admin\SongController@index');
 Route::get('song/add','admin\SongController@add');
 Route::post('song/do_add','admin\SongController@do_add');
-Route::get('wecha/event','admin\WechaController@event');
+Route::post('wecha/event','admin\WechaController@event');
+Route::get('song/ddd','admin\SongController@ddd');
+Route::get('song/code','admin\SongController@code');
+Route::get('song/sess','admin\SongController@sess');
+Route::get('song/yan','admin\SongController@yan');
+Route::get('song/mu','admin\SongController@mu');
+Route::get('song/add_list','admin\SongController@add_list');
+Route::get('song/mm','admin\SongController@mm');
 
 
 
