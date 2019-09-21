@@ -94,6 +94,7 @@ Route::get('song/yan','admin\SongController@yan');
 Route::get('song/mu','admin\SongController@mu');
 Route::get('song/add_list','admin\SongController@add_list');
 Route::get('song/mm','admin\SongController@mm');
+Route::get('wecha/menu','admin\WechaController@menu');
 
 
 

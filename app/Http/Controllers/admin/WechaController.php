@@ -25,6 +25,7 @@ class WechaController extends Controller
     //
     public function event(){
         $xml_string = file_get_contents('php://input');  //获取
+//        dd($xml_string);
 
         $wechat_log_psth = storage_path('logs/wechat/'.date('Y-m-d').'.log');
 
@@ -36,7 +37,7 @@ class WechaController extends Controller
 
         //dd($xml_string);
 
-        $xml_obj = simplexml_load_string($xml_string,'SimpleXMLElement',LIBXML_NOCDATA);
+        $xml_obj = simplexml_load_string($xml_string,'SimpleXMLElement',LIBXML_NOCDATA);//解析文字代码
 
         $xml_arr = (array)$xml_obj;
 
@@ -129,7 +130,7 @@ class WechaController extends Controller
             echo 111;
         }else{
             //不存在
-            DB::beginTransaction();
+            \DB::beginTransaction();
             $openid=\DB::table('user')->insertGetId([
                 'name'=>$openids['nickname'],
                 'pwd'=>'',
@@ -142,7 +143,7 @@ class WechaController extends Controller
                 'openid'=>$openids['openid'],
                 'add_time'=>time()
             ]);
-            DB::rollBack();
+            \DB::rollBack();
             $request->session()->put('uid',$openid);
             echo 'ok';
 //
@@ -197,5 +198,40 @@ class WechaController extends Controller
         $err_msg = curl_error($curl); //错误信息
         curl_close($curl);
         return $data;
+    }
+    public function menu()
+    {
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$this->access_token();
+        $data=[
+                    "button"=>[
+                 [
+                     "type"=>"click",
+                      "name"=>"叫爸爸",
+                      "key"=>"V1001_TODAY_MUSIC"
+                  ],
+                  [
+                      "name"=>"妈卖比",
+                       "sub_button"=>[
+                       [
+                           "type"=>"view",
+                           "name"=>"搜索",
+                           "url"=>"http://www.dongxzhuang.com/wecha/noss"
+                        ],
+                        [
+                            "type"=>"miniprogram",
+                             "name"=>"wxa",
+                             "url"=>"http://mp.weixin.qq.com",
+                             "appid"=>"wx286b93c14bbf93aa",
+                             "pagepath"=>"pages/lunar/index"
+                         ],
+                        [
+                            "type"=>"click",
+                           "name"=>"赞一下我们",
+                           "key"=>"V1001_GOOD"
+                        ]]
+                   ]]
+             ];
+        $dd=$this->curl_post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
+        dd($dd);
     }
 }
