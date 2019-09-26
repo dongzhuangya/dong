@@ -204,11 +204,11 @@ class WechaController extends Controller
                     "button"=>[
                  [
                      "type"=>"click",
-                      "name"=>"叫爸爸",
+                      "name"=>"你管",
                       "key"=>"V1001_TODAY_MUSIC"
                   ],
                   [
-                      "name"=>"妈卖比",
+                      "name"=>"你猜",
                        "sub_button"=>[
                        [
                            "type"=>"view",
