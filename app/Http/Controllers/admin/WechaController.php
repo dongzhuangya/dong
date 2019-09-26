@@ -45,7 +45,7 @@ class WechaController extends Controller
 
         //echo $_GET['echostr'];
 
-        //业务逻辑
+        //业务逻辑a
 
         if($xml_arr['MsgType'] == 'event'){
 
@@ -146,8 +146,6 @@ class WechaController extends Controller
             \DB::rollBack();
             $request->session()->put('uid',$openid);
             echo 'ok';
-//
-
         }
 
 
@@ -215,15 +213,8 @@ class WechaController extends Controller
                        [
                            "type"=>"view",
                            "name"=>"搜索",
-                           "url"=>"http://www.dongxzhuang.com/wecha/noss"
+                           "url"=>"http://www.dongxzhuang.com/wecha/noss "
                         ],
-                        [
-                            "type"=>"miniprogram",
-                             "name"=>"wxa",
-                             "url"=>"http://mp.weixin.qq.com",
-                             "appid"=>"wx286b93c14bbf93aa",
-                             "pagepath"=>"pages/lunar/index"
-                         ],
                         [
                             "type"=>"click",
                            "name"=>"赞一下我们",
