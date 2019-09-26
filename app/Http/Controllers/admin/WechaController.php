@@ -57,13 +57,13 @@ class WechaController extends Controller
 
                 //判断openid是否已经在日志表
 
-                $wechat_openid = DB::connection('mysql_cart')->table('wechat_openid')->where(['openid'=>$user_openid])->first();
+                $wechat_openid = DB::table('wechat_openid')->where(['openid'=>$user_openid])->first();
 
                 if(empty($wechat_openid)){
 
-                    DB::connection('mysql_cart')->table('user')->where(['id'=>$share_code])->increment('share_num',1);
+                    DB::table('user')->where(['id'=>$share_code])->increment('share_num',1);
 
-                    DB::connection('mysql_cart')->table('wechat_openid')->insert([
+                    DB::table('wechat_openid')->insert([
 
                         'openid'=>$user_openid,
 
