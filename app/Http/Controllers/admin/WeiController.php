@@ -41,7 +41,25 @@ class WeiController extends Controller
     }
     public function event()
     {
-        echo $_GET['echostr'];
+        $xml_string = file_get_contents('php://input');  //获取
+//        dd($xml_string);
+
+        $wechat_log_psth = storage_path('logs/wechat/'.date('Y-m-d').'.log');
+
+        file_put_contents($wechat_log_psth,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n",FILE_APPEND);
+
+        file_put_contents($wechat_log_psth,$xml_string,FILE_APPEND);
+
+        file_put_contents($wechat_log_psth,"\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n",FILE_APPEND);
+
+        //dd($xml_string);
+
+        $xml_obj = simplexml_load_string($xml_string,'SimpleXMLElement',LIBXML_NOCDATA);//解析文字代码
+
+        $xml_arr = (array)$xml_obj;
+
+        \Log::Info(json_encode($xml_arr,JSON_UNESCAPED_UNICODE));
+        
     }
     public function curl_post($url,$data)
     {
