@@ -36,7 +36,7 @@ class WeiController extends Controller
                     "type"=> "pic_weixin",
                     "name"=>"微信相册发图",
                     "key"=> "rselfmenu_1_2",
-                    "sub_button"=>[ ]
+                   
                 
             ]
         ];
