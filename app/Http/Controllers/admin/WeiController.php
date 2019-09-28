@@ -29,15 +29,16 @@ class WeiController extends Controller
                             "type"=>"click",
                             "name"=>"赞一下我们",
                             "key"=>"V1001_GOOD"
-                        ],
-                        [
-                            "type"=> "pic_weixin",
-                            "name"=>"微信相册发图",
-                            "key"=> "rselfmenu_1_2",
-                            "sub_button"=>[ ]
-                        ]
-                    ]
-                ]]
+                        ]]
+                ]],
+            [
+
+                    "type"=> "pic_weixin",
+                    "name"=>"微信相册发图",
+                    "key"=> "rselfmenu_1_2",
+                    "sub_button"=>[ ]
+                
+            ]
         ];
         $dd=$this->curl_post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
         dd($dd);
