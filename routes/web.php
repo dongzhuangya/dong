@@ -99,7 +99,7 @@ Route::get('wecha/menu','admin\WechaController@menu');
 Route::get('wei/caidan','admin\WeiController@caidan');
 Route::get('wei/curl_post','admin\WeiController@curl_post');
 Route::get('wei/access_token','admin\WeiController@access_token');
-Route::post('wei/event','admin\WeiController@event');
+Route::any('wei/event','admin\WeiController@event');
 
 
 
