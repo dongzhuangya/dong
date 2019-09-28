@@ -95,6 +95,11 @@ Route::get('song/mu','admin\SongController@mu');
 Route::get('song/add_list','admin\SongController@add_list');
 Route::get('song/mm','admin\SongController@mm');
 Route::get('wecha/menu','admin\WechaController@menu');
+//////////////////////
+Route::get('wei/caidan','admin\WeiController@caidan');
+Route::get('wei/curl_post','admin\WeiController@curl_post');
+Route::get('wei/access_token','admin\WeiController@access_token');
+
 
 
 
