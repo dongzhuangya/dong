@@ -18,7 +18,7 @@ class WeiController extends Controller
                     "key"=>"V1001_TODAY_MUSIC"
                 ],
                 [
-                    "name"=>"",
+                    "name"=>"view",
                     "sub_button"=>[
                         [
                             "type"=>"view",
