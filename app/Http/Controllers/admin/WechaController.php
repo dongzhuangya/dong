@@ -44,40 +44,40 @@ class WechaController extends Controller
         \Log::Info(json_encode($xml_arr,JSON_UNESCAPED_UNICODE));
 
         //echo $_GET['echostr'];
-
+        var_dump($xml_arr);
         //业务逻辑a
 
-        if($xml_arr['MsgType'] == 'event'){
-
-            //$url=file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->access_token()."&openid=".$xml_arr['FromUserName']."&lang=zh_CN");
-
-
-           if($xml_arr['Event'] == 'subscribe'){
-
-                $share_code = explode('_',$xml_arr['EventKey'])[1];
-
-                $user_openid = $xml_arr['FromUserName']; //粉丝openid
-
-                //判断openid是否已经在日志表
-
-                $wechat_openid = DB::table('wechat_openid')->where(['openid'=>$user_openid])->first();
-
-                if(empty($wechat_openid)){
-
-                    \DB::table('user')->where(['id'=>$share_code])->increment('share_num',1);
-                    \DB::table('wechat_openid')->insert([
-
-                        'openid'=>$user_openid,
-
-                        'add_time'=>time()
-
-                    ]);
-
-                }
-
-            }
-
-        }
+//        if($xml_arr['MsgType'] == 'event'){
+//
+//            //$url=file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->access_token()."&openid=".$xml_arr['FromUserName']."&lang=zh_CN");
+//
+//
+//           if($xml_arr['Event'] == 'subscribe'){
+//
+//                $share_code = explode('_',$xml_arr['EventKey'])[1];
+//
+//                $user_openid = $xml_arr['FromUserName']; //粉丝openid
+//
+//                //判断openid是否已经在日志表
+//
+//                $wechat_openid = DB::table('wechat_openid')->where(['openid'=>$user_openid])->first();
+//
+//                if(empty($wechat_openid)){
+//
+//                    \DB::table('user')->where(['id'=>$share_code])->increment('share_num',1);
+//                    \DB::table('wechat_openid')->insert([
+//
+//                        'openid'=>$user_openid,
+//
+//                        'add_time'=>time()
+//
+//                    ]);
+//
+//                }
+//
+//            }
+//
+//        }
 //
 //        $message = '欢迎关注！';
 //
