@@ -59,7 +59,7 @@ class WeiController extends Controller
         $xml_arr = (array)$xml_obj;
 
         \Log::Info(json_encode($xml_arr,JSON_UNESCAPED_UNICODE));
-        
+        dd($xml_arr);
     }
     public function curl_post($url,$data)
     {
