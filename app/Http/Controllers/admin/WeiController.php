@@ -62,10 +62,10 @@ class WeiController extends Controller
         if($xml_arr['MsgType']=='event'&& $xml_arr['Event']=='CLICK'){
             $url=file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->access_token()."&openid=".$xml_arr['FromUserName']."&lang=zh_CN");
             $ss=json_decode($url,1);
-            dd($ss);
-            $message="HELLO ";
-            $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA'.$message.']]></Content></xml>';
 
+            $message="HELLO".$ss['nickname'];
+            $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA'.$message.']]></Content></xml>';
+            echo $xml_str;
         }
     }
     public function curl_post($url,$data)
