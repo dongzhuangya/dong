@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class WeiController extends Controller
 {
@@ -46,6 +47,8 @@ class WeiController extends Controller
 
         $wechat_log_psth = storage_path('logs/wechat/'.date('Y-m-d').'.log');
 
+        print_r($xml_string);
+
         file_put_contents($wechat_log_psth,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n",FILE_APPEND);
 
         file_put_contents($wechat_log_psth,$xml_string,FILE_APPEND);
@@ -57,16 +60,50 @@ class WeiController extends Controller
         $xml_obj = simplexml_load_string($xml_string,'SimpleXMLElement',LIBXML_NOCDATA);//解析文字代码
 
         $xml_arr = (array)$xml_obj;
-
         \Log::Info(json_encode($xml_arr,JSON_UNESCAPED_UNICODE));
+        //被动回复消息
         if($xml_arr['MsgType']=='event'&& $xml_arr['Event']=='CLICK'){
             $url=file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->access_token()."&openid=".$xml_arr['FromUserName']."&lang=zh_CN");
             $ss=json_decode($url,1);
+//            dd($ss);
 
-            $message="HELLO".$ss['nickname'];
-            $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA'.$message.']]></Content></xml>';
+            $message="hello".$ss['nickname'];
+            $xml_str = "<xml>
+                            <ToUserName><![CDATA[".$xml_arr['ToUserName']."]]></ToUserName>
+                            <FromUserName><![CDATA[".$xml_arr['FromUserName']."]]></FromUserName>
+                            <CreateTime>".time()."</CreateTime>
+                            <MsgType><![CDATA[text]]></MsgType>
+                            <Content><![CDATA\".$message.\"]]></Content>
+                        </xml>";
+
+
+//            echo $resultStr;
+
             echo $xml_str;
         }
+
+
+        if ($xml_arr['MsgType'] == 'text' ){
+            $data = [
+               'openid' => $xml_arr['FromUserName'],
+                'add_time' => time(),
+                'content' => $xml_arr['Content']
+            ];
+            $res = \DB::table('wechat_openid')->insert($data);
+
+            //回复
+            $xml ="<xml>
+              <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
+              <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
+              <CreateTime>".time()."</CreateTime>
+              <MsgType><![CDATA[text]]></MsgType>
+              <Content><![CDATA[".time().$xml_arr['Content']."]]></Content>
+            </xml>
+            ";
+
+            echo $xml;
+        }
+
     }
     public function curl_post($url,$data)
     {
