@@ -39,6 +39,10 @@ class WeiController extends Controller
         $dd=$this->curl_post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
         dd($dd);
     }
+    public function event()
+    {
+        echo $_GET['echostr'];
+    }
     public function curl_post($url,$data)
     {
         $curl = curl_init($url);
