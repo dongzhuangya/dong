@@ -18,7 +18,7 @@ class WeiController extends Controller
                     "key"=>"V1001_TODAY_MUSIC"
                 ],
                 [
-                    "name"=>"view",
+                    "name"=>"view事件",
                     "sub_button"=>[
                         [
                             "type"=>"view",
@@ -26,19 +26,15 @@ class WeiController extends Controller
                             "url"=>"http://www.baidu.com"
                         ],
                         [
-                            "type"=>"click",
-                            "name"=>"赞一下我们",
-                            "key"=>"V1001_GOOD"
+
+                            "type"=> "pic_weixin",
+                            "name"=>"图片",
+                            "key"=> "rselfmenu_1_2",
+
+
                         ]]
                 ]],
-            [
 
-                    "type"=> "pic_weixin",
-                    "name"=>"微信相册发图",
-                    "key"=> "rselfmenu_1_2",
-                   
-                
-            ]
         ];
         $dd=$this->curl_post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
         dd($dd);
